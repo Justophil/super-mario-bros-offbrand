@@ -9,8 +9,8 @@ using UnityEngine;
     A: Left
     D: Right
     Left Shift: Run
-    Left Alt: Enable Cursor
-    Space: Jump
+    Left Alt: Enable/Disable Cursor
+    Space: Jump/Double Jump
 */
 
 public class CharacterMovement : MonoBehaviour
@@ -20,7 +20,7 @@ public class CharacterMovement : MonoBehaviour
     public Vector3 playerVelocity;
     public bool groundedPlayer;
     public bool cursorActive = true;
-    public float mouseSensitivy = 5.0f;
+    public float mouseSensitivity = 5.0f;
     private float jumpHeight = 1f;
     private float gravityValue = -9.81f;
     private float walkSpeed = 5;
@@ -31,8 +31,6 @@ public class CharacterMovement : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
-        animator.SetFloat("Speed",0.0f);
-        animator.SetFloat("Jump",0.0f);
     }
     public void Update() {
         UpdateCursor();
@@ -49,7 +47,7 @@ public class CharacterMovement : MonoBehaviour
     }
     void UpdateRotation()
     {
-        transform.Rotate(0, Input.GetAxis("Mouse X")* mouseSensitivy, 0, Space.Self);
+        transform.Rotate(0, Input.GetAxis("Mouse X")* mouseSensitivity, 0, Space.Self);
  
     }
     void UpdateCursor() {
@@ -59,16 +57,14 @@ public class CharacterMovement : MonoBehaviour
         }
     }
     void SetCursor() {
-        Debug.Log("poop");
         UnityEngine.Cursor.visible = cursorActive;
         UnityEngine.Cursor.lockState = (cursorActive) ? CursorLockMode.None : CursorLockMode.Locked;
     }
     void UpdateAnimator()
     {
         groundedPlayer = controller.isGrounded; 
-        // TODO 
         Vector3 characterXandZMotion = new Vector3(playerVelocity.x,0,playerVelocity.z);
-        if(Mathf.Abs(Input.GetAxis("Horizontal"))>0 || Mathf.Abs(Input.GetAxis("Vertical"))>0)
+        if(Mathf.Abs(Input.GetAxis("Horizontal")) > 0 || Mathf.Abs(Input.GetAxis("Vertical")) > 0)
         {
             if(Input.GetButton("Run")) {
                 animator.SetFloat("Speed", 1.0f);
@@ -123,8 +119,14 @@ public class CharacterMovement : MonoBehaviour
         }
         else
         {
-            // Since there is no physics applied on character controller we have this applies to reapply gravity
-            gravity.y += gravityValue * Time.deltaTime;
+            if(Input.GetButtonDown("Jump") && GameManager.is2Jumpable) {
+                gravity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+                animator.SetFloat("Jump",2.0f);
+                GameManager.is2Jumpable = false;
+            }
+            else {
+                gravity.y += gravityValue * Time.deltaTime;
+            }
         }
         // Apply gravity and move the character
         playerVelocity = gravity * Time.deltaTime + movement;

@@ -6,8 +6,7 @@ using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour
 {
     public void OnGameStart() {
-        //TODO: Reset/Set the Score to 0
-        
+        GameManager.Score = 0;
         SceneManager.LoadScene("Level1");
     }
 

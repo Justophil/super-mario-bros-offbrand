@@ -5,16 +5,20 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    public float Score=0;
+    public static float Score { get; set; }
+    public static bool is2Jumpable { get; set; }
 
     private void Awake()
     {
         Instance = this;
+        Score = 0;
+        is2Jumpable = false;
         DontDestroyOnLoad(Instance);
     }
 
-    public void IncrementScore()
+    public static void IncrementScore()
     {
         Score = Score + 50;
+        Debug.Log(Score);
     }
 }
