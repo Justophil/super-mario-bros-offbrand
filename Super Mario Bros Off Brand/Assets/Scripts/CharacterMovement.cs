@@ -31,6 +31,8 @@ public class CharacterMovement : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        animator.SetFloat("Speed",0.0f);
+        animator.SetFloat("Jump",0.0f);
     }
     public void Update() {
         UpdateCursor();

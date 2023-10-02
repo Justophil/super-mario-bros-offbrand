@@ -7,7 +7,6 @@ public class DeathPlaneComponent : MonoBehaviour
 {   
     void OnTriggerEnter(Collider other) {
         if(other.tag == "Player") {
-            Debug.Log("poop");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
