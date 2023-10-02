@@ -960,6 +960,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlueOrb
       objectReference: {fileID: 0}
+    - target: {fileID: 7700630768171031639, guid: fdce6a5a7d86a904497d794d780e1a76, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
