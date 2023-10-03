@@ -7,7 +7,7 @@ public class DeathBehavior : MonoBehaviour
 {
     void OnTriggerEnter(Collider other) {
         if(other.tag == "Player") {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            GameManager.LoadLevel();
         }
     }
 }

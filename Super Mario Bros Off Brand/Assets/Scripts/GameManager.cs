@@ -21,4 +21,9 @@ public class GameManager : MonoBehaviour
         Score = Score + 50;
         Debug.Log(Score);
     }
+
+    public static void LoadLevel(int index = 0)
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + index);
+    }
 }
