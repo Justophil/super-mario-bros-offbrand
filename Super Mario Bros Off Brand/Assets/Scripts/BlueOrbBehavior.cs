@@ -8,7 +8,7 @@ public class BlueOrbBehavior : MonoBehaviour
         if(other.tag == "Player") {
             GameManager.is2Jumpable = true;
             gameObject.SetActive(false);
-            Invoke("ResetOrb",3);
+            Invoke("ResetOrb",3.0f);
         }
     }
 

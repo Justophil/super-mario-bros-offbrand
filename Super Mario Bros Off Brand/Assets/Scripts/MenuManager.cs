@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
+    void Start() {
+        if(SceneManager.GetActiveScene().name == "End") {
+            GameManager.PrintScore();
+        }
+    }
     public void OnGameStart() {
         GameManager.Score = 0;
         SceneManager.LoadScene("Level1");

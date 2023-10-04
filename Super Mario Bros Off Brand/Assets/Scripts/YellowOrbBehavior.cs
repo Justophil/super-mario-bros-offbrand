@@ -8,6 +8,7 @@ public class YellowOrbBehavior : MonoBehaviour
     void OnTriggerEnter(Collider other){
         if(other.tag == "Player") {
             GameManager.IncrementScore();
+            GameManager.PrintScore();
             gameObject.SetActive(false);
         }
     }

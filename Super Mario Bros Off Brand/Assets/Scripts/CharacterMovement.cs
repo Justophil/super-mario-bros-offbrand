@@ -31,6 +31,7 @@ public class CharacterMovement : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        GameManager.PrintScore();
     }
     public void Update() {
         UpdateCursor();
@@ -107,7 +108,7 @@ public class CharacterMovement : MonoBehaviour
         {
             if (Input.GetButtonDown("Jump"))
             {
-                gravity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+                gravity.y = Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
                 animator.SetFloat("Jump",1.0f);
             }
             else
@@ -125,6 +126,7 @@ public class CharacterMovement : MonoBehaviour
                 GameManager.is2Jumpable = false;
             }
             else {
+                animator.SetFloat("Jump",0.0f);
                 gravity.y += gravityValue * Time.deltaTime;
             }
         }
