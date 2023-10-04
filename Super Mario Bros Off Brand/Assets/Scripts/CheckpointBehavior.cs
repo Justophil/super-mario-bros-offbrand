@@ -7,7 +7,7 @@ public class CheckpointBehavior : MonoBehaviour
 {
     void OnTriggerEnter(Collider other) {
         if(other.tag == "Player") {
-            GameManager.LoadLevel(SceneManager.GetActiveScene().buildIndex + 1);
+            GameManager.LoadLevel(1);
         }    
     }
 }
