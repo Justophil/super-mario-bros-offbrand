@@ -16,7 +16,9 @@ using UnityEngine;
 public class CharacterMovement : MonoBehaviour
 {
 
-   public Vector3 gravity;
+    public ParticleSystem burst = null;
+    public float timer = 0;
+    public Vector3 gravity;
     public Vector3 playerVelocity;
     public bool groundedPlayer;
     public bool cursorActive = true;
@@ -37,7 +39,22 @@ public class CharacterMovement : MonoBehaviour
         UpdateCursor();
         UpdateRotation();
         ProcessMovement();
+        // PlayParticle(); This does not work
     }
+    // public void PlayParticle() {
+    //     if(GameManager.is2Jumpable) {
+    //         timer += Time.deltaTime;
+    //         if (timer > 1.5f)
+    //         {
+    //             burst.transform.position = gameObject.transform.position;
+    //             burst.Play();
+    //             timer = 0f;
+    //         }
+    //     }
+    //     else {
+    //         burst.Stop();
+    //     }
+    // }
     public void LateUpdate()
     {
        UpdateAnimator();  
@@ -121,7 +138,7 @@ public class CharacterMovement : MonoBehaviour
         else
         {
             if(Input.GetButtonDown("Jump") && GameManager.is2Jumpable) {
-                gravity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+                gravity.y += Mathf.Sqrt(jumpHeight * -5.0f * gravityValue);
                 animator.SetFloat("Jump",2.0f);
                 GameManager.is2Jumpable = false;
             }

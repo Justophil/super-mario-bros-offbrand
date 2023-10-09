@@ -11,7 +11,7 @@ public class MenuManager : MonoBehaviour
         }
     }
     public void OnGameStart() {
-        GameManager.Score = 0;
+        GameManager.InitialScore = 0;
         SceneManager.LoadScene("Level1");
     }
 

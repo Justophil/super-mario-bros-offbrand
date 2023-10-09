@@ -7,12 +7,15 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public static float Score { get; set; }
+
+    public static float InitialScore { get; set; }
+
     public static bool is2Jumpable { get; set; }
     private static Text scoreText { get; set; }
     private void Awake()
     {
         Instance = this;
-        Score = 0;
+        Score = GameManager.InitialScore;
         is2Jumpable = false;
         DontDestroyOnLoad(Instance);
     }
@@ -25,6 +28,12 @@ public class GameManager : MonoBehaviour
     public static void LoadLevel(int index = 0)
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + index);
+        if(index == 1) {
+            GameManager.InitialScore = GameManager.Score;
+        }
+        else {
+            GameManager.Score = GameManager.InitialScore;
+        }
     }
 
     public static void PrintScore() {
