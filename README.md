@@ -1,2 +1,2 @@
-# game-assignment-1
-Game programming 2 assignment 1 due October 4
+# Super Mario Bros Offbrand
+Game programming 2 assignment 1
